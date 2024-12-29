@@ -57,14 +57,14 @@
 
     (:init
 
-        (userPRM Sebas)
-        (userPRM Xavier)
-        (userPRM Alba)
-        (userPRM Kilian)
-        (userPRM Fabiola)
+        (isPRM Sebas)
+        (isPRM Xavier)
+        (isPRM Alba)
+        (isPRM Kilian)
+        (isPRM Fabiola)
 
-        (seatPRM seat09)
-        (seatPRM seat10)
+        (isPRM seat09)
+        (isPRM seat10)
     
         (origin Esteban p2701)
         (destination Esteban p2703)
@@ -171,20 +171,20 @@
         (iswaiting Ruth)
         (not (served Ruth))
 
-        (seat_at seat01 SBus027)
-        (seat_at seat02 SBus027)
-        (seat_at seat03 SBus027)
-        (seat_at seat04 SBus027)
-        (seat_at seat05 SBus027)
-        (seat_at seat06 SBus027)
-        (seat_at seat07 SBus027)
-        (seat_at seat08 SBus027)
-        (seat_at seat09 SBus027)
-        (seat_at seat10 SBus027)
-        (seat_at seat11 SBus027)
-        (seat_at seat12 SBus027)
-        (seat_at seat13 SBus027)
-        (seat_at seat14 SBus027)
+        (at seat01 SBus027)
+        (at seat02 SBus027)
+        (at seat03 SBus027)
+        (at seat04 SBus027)
+        (at seat05 SBus027)
+        (at seat06 SBus027)
+        (at seat07 SBus027)
+        (at seat08 SBus027)
+        (at seat09 SBus027)
+        (at seat10 SBus027)
+        (at seat11 SBus027)
+        (at seat12 SBus027)
+        (at seat13 SBus027)
+        (at seat14 SBus027)
 
         (not (occupied seat01))
         (not (occupied seat02))
@@ -201,7 +201,7 @@
         (not (occupied seat13))
         (not (occupied seat14))
 
-        (bus_at SBus027 p2701)
+        (located SBus027 p2701)
     )
 
     (:goal

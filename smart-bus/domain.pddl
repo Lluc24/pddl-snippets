@@ -1,18 +1,17 @@
 (define (domain DOMAIN_SMARTBUS)
     (:requirements :strips :typing :adl)
     (:types
-        bus bus_stop user seat - object
+        bus bus_stop occupant - object
+        user seat - occupant
     )
     (:predicates
         (origin ?u - user ?bs - bus_stop)
         (destination ?u - user ?bs - bus_stop)
-        (bus_at ?b - bus ?bs - bus_stop)
-        (seat_at ?s - seat ?b - bus)
-        (user_at ?u - user ?b - bus)
+        (located ?b - bus ?bs - bus_stop)
+        (at ?o - occupant ?b - bus)
         (iswaiting ?u - user)
         (occupied ?s - seat)
-        (seatPRM ?s - seat)
-        (userPRM ?u - user)
+        (isPRM ?o - occupant)
         (served ?u - user)
     )
     (:action get_on
@@ -24,17 +23,17 @@
         )
         :precondition
             (and
-                (seat_at ?seat ?bus)
-                (bus_at ?bus ?stop)
+                (at ?seat ?bus)
+                (located ?bus ?stop)
                 (origin ?user ?stop)
                 (iswaiting ?user)
                 (not (occupied ?seat))
-                (imply (seatPRM ?seat) (userPRM ?user))
+                (imply (isPRM ?seat) (isPRM ?user))
             )
         :effect
             (and
                 (not (iswaiting ?user))
-                (user_at ?user ?bus)
+                (at ?user ?bus)
                 (occupied ?seat)
             )
     )
@@ -47,14 +46,14 @@
         )
         :precondition
             (and
-                (seat_at ?seat ?bus)
-                (bus_at ?bus ?stop)
-                (user_at ?user ?bus)
+                (at ?seat ?bus)
+                (located ?bus ?stop)
+                (at ?user ?bus)
                 (destination ?user ?stop)
             )
         :effect
             (and 
-                (not (user_at ?user ?bus))
+                (not (at ?user ?bus))
                 (not (occupied ?seat))
                 (served ?user)
             )
@@ -66,13 +65,11 @@
             ?to - bus_stop
         )
         :precondition
-            (and 
-                (bus_at ?bus ?from)
-            )
+            (located ?bus ?from)
         :effect
             (and
-                (not (bus_at ?bus ?from))
-                (bus_at  ?bus ?to)
+                (not (located ?bus ?from))
+                (located  ?bus ?to)
             ) 
     )
 )
