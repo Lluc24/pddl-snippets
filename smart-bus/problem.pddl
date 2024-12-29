@@ -1,27 +1,27 @@
 (define (problem PROBLEM_SMARTBUS)
     (:objects
 
-        Esteban - userNonPRM
-        Daniel - userNonPRM
-        Lorena - userNonPRM
-        Raul - userNonPRM
-        Estela - userNonPRM
-        Martina - userNonPRM
-        Pau - userNonPRM
-        Cristina - userNonPRM
-        Luis - userNonPRM
-        Jesus - userNonPRM
-        Maria - userNonPRM
-        Sebas - userPRM
-        Noelia - userNonPRM
-        Xavier - userPRM
-        Alba - userPRM
-        Beatriz - userNonPRM
-        Jordi - userNonPRM
-        Kilian - userPRM
-        Fabiola - userPRM
-        Susana - userNonPRM
-        Ruth - userNonPRM
+        Esteban - user
+        Daniel - user
+        Lorena - user
+        Raul - user
+        Estela - user
+        Martina - user
+        Pau - user
+        Cristina - user
+        Luis - user
+        Jesus - user
+        Maria - user
+        Sebas - user
+        Noelia - user
+        Xavier - user
+        Alba - user
+        Beatriz - user
+        Jordi - user
+        Kilian - user
+        Fabiola - user
+        Susana - user
+        Ruth - user
 
         p2701 - bus_stop
         p2702 - bus_stop
@@ -38,24 +38,33 @@
         p2713 - bus_stop
         p2714 - bus_stop
 
-        busH4 - bus
-        seat01 - seatNonPRM
-        seat02 - seatNonPRM
-        seat03 - seatNonPRM
-        seat04 - seatNonPRM
-        seat05 - seatNonPRM
-        seat06 - seatNonPRM
-        seat07 - seatNonPRM
-        seat08 - seatNonPRM
-        seat09 - seatPRM
-        seat10 - seatPRM
-        seat11 - seatNonPRM
-        seat12 - seatNonPRM
-        seat13 - seatNonPRM
-        seat14 - seatNonPRM
+        SBus027 - bus
+        seat01 - seat
+        seat02 - seat
+        seat03 - seat
+        seat04 - seat
+        seat05 - seat
+        seat06 - seat
+        seat07 - seat
+        seat08 - seat
+        seat09 - seat
+        seat10 - seat
+        seat11 - seat
+        seat12 - seat
+        seat13 - seat
+        seat14 - seat
     )
 
     (:init
+
+        (userPRM Sebas)
+        (userPRM Xavier)
+        (userPRM Alba)
+        (userPRM Kilian)
+        (userPRM Fabiola)
+
+        (seatPRM seat09)
+        (seatPRM seat10)
     
         (origin Esteban p2701)
         (destination Esteban p2703)
@@ -162,20 +171,20 @@
         (iswaiting Ruth)
         (not (served Ruth))
 
-        (seat_at seat01 busH4)
-        (seat_at seat02 busH4)
-        (seat_at seat03 busH4)
-        (seat_at seat04 busH4)
-        (seat_at seat05 busH4)
-        (seat_at seat06 busH4)
-        (seat_at seat07 busH4)
-        (seat_at seat08 busH4)
-        (seat_at seat09 busH4)
-        (seat_at seat10 busH4)
-        (seat_at seat11 busH4)
-        (seat_at seat12 busH4)
-        (seat_at seat13 busH4)
-        (seat_at seat14 busH4)
+        (seat_at seat01 SBus027)
+        (seat_at seat02 SBus027)
+        (seat_at seat03 SBus027)
+        (seat_at seat04 SBus027)
+        (seat_at seat05 SBus027)
+        (seat_at seat06 SBus027)
+        (seat_at seat07 SBus027)
+        (seat_at seat08 SBus027)
+        (seat_at seat09 SBus027)
+        (seat_at seat10 SBus027)
+        (seat_at seat11 SBus027)
+        (seat_at seat12 SBus027)
+        (seat_at seat13 SBus027)
+        (seat_at seat14 SBus027)
 
         (not (occupied seat01))
         (not (occupied seat02))
@@ -192,7 +201,7 @@
         (not (occupied seat13))
         (not (occupied seat14))
 
-        (bus_at busH4 p2701)
+        (bus_at SBus027 p2701)
     )
 
     (:goal

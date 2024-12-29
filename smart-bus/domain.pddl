@@ -1,9 +1,7 @@
 (define (domain DOMAIN_SMARTBUS)
-    (:requirements :strips :typing)
+    (:requirements :strips :typing :adl)
     (:types
         bus bus_stop user seat - object
-        seatPRM seatNonPRM - seat
-        userNonPRM userPRM - user
     )
     (:predicates
         (origin ?u - user ?bs - bus_stop)
@@ -13,14 +11,16 @@
         (user_at ?u - user ?b - bus)
         (iswaiting ?u - user)
         (occupied ?s - seat)
+        (seatPRM ?s - seat)
+        (userPRM ?u - user)
         (served ?u - user)
     )
-    (:action get_on_PRM
+    (:action get_on
         :parameters (
-            ?user - userPRM
+            ?user - user
             ?stop - bus_stop
             ?bus - bus
-            ?seat - seatPRM
+            ?seat - seat
         )
         :precondition
             (and
@@ -29,6 +29,7 @@
                 (origin ?user ?stop)
                 (iswaiting ?user)
                 (not (occupied ?seat))
+                (imply (seatPRM ?seat) (userPRM ?user))
             )
         :effect
             (and
@@ -37,55 +38,12 @@
                 (occupied ?seat)
             )
     )
-    (:action get_on_NonPRM
+    (:action get_off
         :parameters (
-            ?user - userNonPRM
+            ?user - user
             ?stop - bus_stop
             ?bus - bus
-            ?seat - seatNonPRM
-        )
-        :precondition
-            (and
-                (seat_at ?seat ?bus)
-                (bus_at ?bus ?stop)
-                (origin ?user ?stop)
-                (iswaiting ?user)
-                (not (occupied ?seat))
-            )
-        :effect
-            (and
-                (not (iswaiting ?user))
-                (user_at ?user ?bus)
-                (occupied ?seat)
-            )
-    )
-    (:action get_off_PRM
-        :parameters (
-            ?user - userPRM
-            ?stop - bus_stop
-            ?bus - bus
-            ?seat - seatPRM
-        )
-        :precondition
-            (and
-                (seat_at ?seat ?bus)
-                (bus_at ?bus ?stop)
-                (user_at ?user ?bus)
-                (destination ?user ?stop)
-            )
-        :effect
-            (and 
-                (not (user_at ?user ?bus))
-                (not (occupied ?seat))
-                (served ?user)
-            )
-    )
-    (:action get_off_NonPRM
-        :parameters (
-            ?user - userNonPRM
-            ?stop - bus_stop
-            ?bus - bus
-            ?seat - seatNonPRM
+            ?seat - seat
         )
         :precondition
             (and
